@@ -13,7 +13,7 @@ rp_module_id="ppsspp"
 rp_module_desc="PlayStation Portable emulator PPSSPP"
 rp_module_help="ROM Extensions: .iso .pbp .cso\n\nCopy your PlayStation Portable roms to $romdir/psp"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/hrydgard/ppsspp/master/LICENSE.TXT"
-rp_module_repo="git https://github.com/hrydgard/ppsspp.git master"
+rp_module_repo="git https://github.com/hrydgard/ppsspp.git v1.12.3"
 rp_module_section="opt"
 rp_module_flags=""
 
@@ -128,7 +128,7 @@ function build_ppsspp() {
     local params=()
     if isPlatform "videocore"; then
         if isPlatform "armv6"; then
-            params+=(-DCMAKE_TOOLCHAIN_FILE=cmake/Toolchains/raspberry.armv6.cmake -DFORCED_CPU=armv6)
+            params+=(-DCMAKE_TOOLCHAIN_FILE=cmake/Toolchains/raspberry.armv6.cmake -DFORCED_CPU=armv6 -DATOMIC_LIB=atomic)
         else
             params+=(-DCMAKE_TOOLCHAIN_FILE=cmake/Toolchains/raspberry.armv7.cmake)
         fi
